@@ -1,7 +1,18 @@
+import { PaymentModal } from "@/components/PaymentModal";
+import { Button } from "@/components/ui/button";
 
+import { useUiStore } from "@/hooks";
 
 export const DashboardPage = () => {
+  const { openModal } = useUiStore();
+
   return (
-    <div>DashboardPage</div>
-  )
-}
+    <>
+      <Button onClick={openModal} variant="outline">
+        Open Modal
+      </Button>
+
+      <PaymentModal />
+    </>
+  );
+};
