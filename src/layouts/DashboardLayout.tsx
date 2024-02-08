@@ -1,5 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { Loader } from "@/components/Loader";
+import { Outlet } from "react-router-dom";
 
 export const DashboardLayout = () => {
   return (
