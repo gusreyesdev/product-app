@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 
 import { Product } from "@/interfaces/product";
-import { DollarSign, Star } from "lucide-react";
+import { DollarSign } from "lucide-react";
 
 interface Props {
   product: Product;
