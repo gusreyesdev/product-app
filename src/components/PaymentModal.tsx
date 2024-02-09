@@ -8,7 +8,7 @@ export const PaymentModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={closeModal}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-screen-sm">
         <div className="grid gap-4 py-4">
           <CreditCardForm />
         </div>

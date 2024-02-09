@@ -7,5 +7,5 @@
 2.
 
 ```
-VITE_PRODUCT_URL=https://fakestoreapi.com/products
+VITE_STORE_API_URL=https://fakestoreapi.com/
 ```

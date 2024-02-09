@@ -170,7 +170,11 @@ export const CreditCardForm = () => {
             )}
           />
 
-          <Button type="submit">Submit</Button>
+          <div className="flex justify-center">
+            <Button className="w-full" type="submit">
+              Accept
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

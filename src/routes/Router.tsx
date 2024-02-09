@@ -1,6 +1,6 @@
 import { Root } from "@/Root";
 import { DashboardLayout } from "@/layouts";
-import { DashboardPage } from "@/pages";
+import { DashboardPage, ProductPage } from "@/pages";
 
 import { createBrowserRouter } from "react-router-dom";
 
@@ -17,6 +17,10 @@ export const Router = createBrowserRouter([
           {
             path: "",
             element: <DashboardPage />,
+          },
+          {
+            path: "details",
+            element: <ProductPage />,
           },
         ],
       },

@@ -1,6 +1,10 @@
+import { getEnvVariables } from "@/helpers";
 import axios from "axios";
 
+const { VITE_STORE_API_URL } = getEnvVariables();
 
-const lambdaApi = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+const productsApi = axios.create({
+  baseURL: VITE_STORE_API_URL,
 });
+
+export { productsApi };
