@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 
@@ -19,6 +20,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 
 import validator from "validator";
+import { usePaymentStore, useUiStore } from "@/hooks";
+import { Payment } from "@/interfaces";
 
 const FormSchema = z.object({
   number: z.coerce
@@ -47,6 +50,12 @@ const FormSchema = z.object({
 });
 
 export const CreditCardForm = () => {
+  const navigate = useNavigate();
+
+  const { closeModal } = useUiStore();
+
+  const { startSetPayment } = usePaymentStore();
+
   const [state, setState] = useState({
     focus: undefined,
   });
@@ -72,17 +81,54 @@ export const CreditCardForm = () => {
     });
   };
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    const { number } = values;
-
-    console.log("values", values);
-
+  const isCardValid = (number: string, expiry: string) => {
     if (!validator.isCreditCard(number)) {
       toast({
         duration: 2000,
         variant: "destructive",
         description: "Credit Card is Invalid",
       });
+      return false;
+    }
+
+    const fullYear = String(new Date().getFullYear());
+
+    const year = Number(fullYear.slice(-2));
+
+    const cardYear = Number(expiry.slice(-2));
+
+    if (cardYear < year) {
+      toast({
+        duration: 2000,
+        variant: "destructive",
+        description: "expiry is Invalid",
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+    const { number, name, expiry, cvc } = values;
+
+    if (isCardValid(number, expiry)) {
+      closeModal();
+
+      const payment: Payment = {
+        payment_method_type: "CARD",
+        currency: "COP",
+        card: {
+          number: Number(number),
+          name: name,
+          expiry: Number(expiry),
+          cvc: Number(cvc),
+        },
+      };
+
+      startSetPayment(payment);
+
+      navigate("/dashboard/summary/", { state: { card: values } });
     }
   };
 

@@ -5,8 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Product } from "@/interfaces";
 
-import { Product } from "@/interfaces/product";
 import { DollarSign } from "lucide-react";
 
 interface Props {

@@ -1,18 +1,20 @@
 import { productsApi } from "@/api";
 import { useAppDispatch, useAppSelector } from "@/store/Hooks";
-import { onInitLoading, onLoadProducts, onLoadProduct } from "@/store";
+import { onProductInitLoading, onLoadProducts, onLoadProduct } from "@/store";
 import Swal from "sweetalert2";
 import { AxiosError } from "axios";
-import { Product } from "@/interfaces/product";
+import { Product } from "@/interfaces";
+
 
 export const useProductStore = () => {
   const { products, product, isLoading } = useAppSelector(
     (state) => state.product
   );
+  
   const dispatch = useAppDispatch();
 
   const startLoadingProducts = async () => {
-    dispatch(onInitLoading());
+    dispatch(onProductInitLoading());
 
     try {
       const { data } = await productsApi.get("products");
@@ -33,7 +35,7 @@ export const useProductStore = () => {
   const startLoadingProduct = async (product: Product) => {
     const { id } = product;
 
-    dispatch(onInitLoading());
+    dispatch(onProductInitLoading());
 
     try {
       const { data } = await productsApi.get(`products/${id}`);
