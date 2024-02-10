@@ -5,8 +5,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Product } from "@/interfaces";
 
+<<<<<<< HEAD
 import { Product } from "@/interfaces/product";
+=======
+>>>>>>> dev
 import { DollarSign } from "lucide-react";
 
 interface Props {

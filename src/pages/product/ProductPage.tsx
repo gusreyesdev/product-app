@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useUiStore } from "@/hooks";
+import { usePaymentStore, useProductStore, useUiStore } from "@/hooks";
 import { Button } from "@/components/ui/button";
-import { useProductStore } from "@/hooks/useProductStore";
 import { Loader } from "@/components/Loader";
 import { PaymentModal } from "@/components/PaymentModal";
 import { DollarSign, HashIcon, StarIcon } from "lucide-react";
+import { Payment } from "@/interfaces";
 
 export const ProductPage = () => {
   const { openModal } = useUiStore();
@@ -13,6 +13,8 @@ export const ProductPage = () => {
   const { state } = useLocation();
 
   const { isLoading, product, startLoadingProduct } = useProductStore();
+
+  const { startSetPayment } = usePaymentStore();
 
   useEffect(() => {
     startLoadingProduct(state);
@@ -25,6 +27,18 @@ export const ProductPage = () => {
       </div>
     );
   }
+
+  const onOpenModal = () => {
+    const payment: Payment = {
+      amount: product.price,
+      productName: product.title,
+      reference: String(product.id),
+    };
+
+    startSetPayment(payment);
+
+    openModal();
+  };
 
   return (
     <>
@@ -51,8 +65,8 @@ export const ProductPage = () => {
           <HashIcon /> <p className="">{product.category}</p>
         </div>
 
-        <div className="flex justify-center mt-2 " >
-          <Button className="" onClick={openModal} variant="default">
+        <div className="flex justify-center mt-2 ">
+          <Button onClick={onOpenModal} variant="default">
             Pay with credit card
           </Button>
         </div>

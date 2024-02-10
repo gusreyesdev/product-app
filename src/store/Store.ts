@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productSlice, uiSlice } from ".";
+import { productSlice, paymentSlice, uiSlice } from ".";
 
 export const Store = configureStore({
   reducer: {
     ui: uiSlice.reducer,
-    product: productSlice.reducer
+    product: productSlice.reducer,
+    payment: paymentSlice.reducer,
   },
 });
 

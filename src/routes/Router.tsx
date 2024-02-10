@@ -1,6 +1,6 @@
 import { Root } from "@/Root";
 import { DashboardLayout } from "@/layouts";
-import { DashboardPage, ProductPage } from "@/pages";
+import { DashboardPage, PaymentPage, ProductPage, SummaryPage } from "@/pages";
 
 import { createBrowserRouter } from "react-router-dom";
 
@@ -21,6 +21,14 @@ export const Router = createBrowserRouter([
           {
             path: "details",
             element: <ProductPage />,
+          },
+          {
+            path: "summary",
+            element: <SummaryPage />,
+          },
+          {
+            path: "payment",
+            element: <PaymentPage />,
           },
         ],
       },

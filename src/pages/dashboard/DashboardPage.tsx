@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useProductStore } from "@/hooks/useProductStore";
-import { Product } from "@/interfaces/product";
+import { useProductStore } from "@/hooks";
 import { Loader } from "@/components/Loader";
 import { ProductCard } from "@/components/ProductCard";
+import { Product } from "@/interfaces";
 
 
 export const DashboardPage = () => {

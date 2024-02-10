@@ -1,6 +1,5 @@
-import { ProductsResponse } from "@/interfaces";
-import { Product } from "@/interfaces/product";
 import { createSlice } from "@reduxjs/toolkit";
+import { Product, ProductsResponse } from "@/interfaces";
 
 interface InitialState {
   products: ProductsResponse[];
@@ -30,7 +29,7 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
 
-    onInitLoading: (state) => {
+    onProductInitLoading: (state) => {
       state.isLoading = true;
     },
 
@@ -55,5 +54,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const { onInitLoading ,onLoadProducts, onLoadProduct } =
+export const { onProductInitLoading ,onLoadProducts, onLoadProduct } =
   productSlice.actions;
