@@ -2,6 +2,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { usePaymentStore } from "@/hooks";
 import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
+import Swal from "sweetalert2";
 
 export const SummaryPage = () => {
   const navigate = useNavigate();
@@ -27,7 +28,15 @@ export const SummaryPage = () => {
       startPay();
     }, 3000);
 
-    navigate("/dashboard/payment/");
+    if (payment.status === "approved") {
+      navigate("/dashboard/payment/");
+    } else {
+      Swal.fire({
+        title: "Something went wrong!",
+        text: "Error when making payment",
+        icon: "error",
+      });
+    }
   };
 
   return (
