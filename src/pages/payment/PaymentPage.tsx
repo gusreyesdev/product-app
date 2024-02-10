@@ -1,11 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { usePaymentStore } from "@/hooks";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const PaymentPage = () => {
   const navigate = useNavigate();
 
   const { payment } = usePaymentStore();
+
+  if (payment.reference === "") {
+    return <Navigate to="/dashboard" />;
+  }
 
   const onDone = () => {
     navigate("/dashboard");
