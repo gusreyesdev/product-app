@@ -1,3 +1,4 @@
+/*
 export default {
   presets: [
    // ["@babel/preset-env", { targets: { esmodules: true } }],
@@ -6,3 +7,4 @@ export default {
     '@babel/preset-typescript',
   ],
 };
+*/
