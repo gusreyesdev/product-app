@@ -28,7 +28,6 @@ export const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-
     onProductInitLoading: (state) => {
       state.isLoading = true;
     },
@@ -54,5 +53,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const { onProductInitLoading ,onLoadProducts, onLoadProduct } =
+export const { onProductInitLoading, onLoadProducts, onLoadProduct } =
   productSlice.actions;

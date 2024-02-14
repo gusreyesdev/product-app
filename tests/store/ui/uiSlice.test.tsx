@@ -2,7 +2,9 @@ import { onCloseModal, onOpenModal, uiSlice } from "../../../src/store";
 
 describe("Ui Slice test", () => {
   test("Must return state default ", () => {
-    expect(uiSlice.getInitialState().isModalOpen).toBeFalsy();
+    const state = uiSlice.getInitialState();
+
+    expect(state.isModalOpen).toBeFalsy();
   });
 
   test("Must to change isModalOpen ", () => {
